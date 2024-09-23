@@ -59,8 +59,8 @@ public class testNG extends ServerStart{
 		WebElement n1= driver.findElement(By.id("com.miui.calculator:id/digit_9"));
 		n1.click();
 		// Choose the operation to perform
-	    WebElement op2=driver.findElement(By.id("com.miui.calculator:id/op_add"));
-	    op2.click();
+	        WebElement op2=driver.findElement(By.id("com.miui.calculator:id/op_add"));
+	        op2.click();
 		// Click on second number
 		WebElement n2=driver.findElement(By.id("com.miui.calculator:id/digit_5"));
 		n2.click();
