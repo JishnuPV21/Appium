@@ -1,0 +1,82 @@
+package udemy.appiumtest;
+
+import java.net.URL;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import io.appium.java_client.AppiumDriver;
+
+public class testNG extends ServerStart{
+	static AppiumDriver driver;
+
+	public testNG()
+	{
+		super();
+	}
+	
+	@BeforeMethod
+	public void openApp() throws Exception {		
+		DesiredCapabilities cap = new DesiredCapabilities();
+		cap.setCapability("platformName", "Android");
+		cap.setCapability("appium:deviceName", "Redmi Note 12 5G");
+		cap.setCapability("appium:udid", "43fa19d00423");
+		cap.setCapability("appium:appPackage", "com.miui.calculator");
+		cap.setCapability("appium:appActivity", "com.miui.calculator.cal.CalculatorActivity");
+		cap.setCapability("appium:automationName", "UiAutomator2");
+
+		URL url = new URL("http://0.0.0.0:4723");
+		driver = new AppiumDriver(url, cap);
+
+		System.out.println("Opened Calculator");
+		Thread.sleep(2000);
+	}
+
+	@Test(priority = 1)
+	public void multiplication() {
+		// Click on first number
+		WebElement m1= driver.findElement(By.id("com.miui.calculator:id/digit_9"));
+		m1.click();
+		// Choose the operation to perform
+		WebElement op1= driver.findElement(By.id("com.miui.calculator:id/op_mul"));
+		op1.click();
+		// Click on second number
+		WebElement m2= driver.findElement(By.id("com.miui.calculator:id/digit_5"));
+		m2.click();
+		// Click on Equal to
+		driver.findElement(By.id("com.miui.calculator:id/btn_equal_s")).click();
+		// Fetch the result
+		String result = driver.findElement(By.id("com.miui.calculator:id/result")).getText();
+		// Print the result to verify
+		System.out.println("The result of "+ m1.getText() + " * " + m2.getText() +" is " + result);
+	}
+
+	@Test (priority=2)
+	public void addition() {
+		// Click on first number
+		WebElement n1= driver.findElement(By.id("com.miui.calculator:id/digit_9"));
+		n1.click();
+		// Choose the operation to perform
+	    WebElement op2=driver.findElement(By.id("com.miui.calculator:id/op_add"));
+	    op2.click();
+		// Click on second number
+		WebElement n2=driver.findElement(By.id("com.miui.calculator:id/digit_5"));
+		n2.click();
+		// Click on Equal to
+		driver.findElement(By.id("com.miui.calculator:id/btn_equal_s")).click();
+		// Fetch the result
+		String result = driver.findElement(By.id("com.miui.calculator:id/result")).getText();
+		// Print the result to verify
+		System.out.println("The result of "+ n1.getText() + " + " + n2.getText() +" is " + result);
+	}
+
+	@AfterMethod
+	public void closeApp() {
+		// Closing the driver
+		driver.quit();
+		System.out.println("App closed");
+	}
+
+}
