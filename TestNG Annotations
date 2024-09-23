@@ -1,0 +1,9 @@
+@BeforeSuite: The method annotated with this runs before all tests in the suite are executed.
+@BeforeTest: This runs before any test method belonging to the classes inside the <test> tag in the testng.xml file.
+@BeforeClass: The method annotated with this runs before the first test method in the current class is invoked.
+@BeforeMethod: Runs before each test method.
+@Test: The actual test method(s). This is where the core test logic resides.
+@AfterMethod: Runs after each test method.
+@AfterClass: This runs after all the test methods in the current class have been executed.
+@AfterTest: Runs after all the test methods in the <test> tag in the testng.xml file.
+@AfterSuite: This runs after all tests in the suite are executed.
